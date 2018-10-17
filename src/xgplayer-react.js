@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Player from 'xgplayer';
 import 'xgplayer-mp4';
@@ -11,7 +11,7 @@ import Music from 'xgplayer-music';
 
 let player = null;
 
-export default class ReactXgplayer extends PureComponent {
+export default class ReactXgplayer extends Component {
   constructor(props) {
     super(props);
   }
