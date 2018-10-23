@@ -4,7 +4,7 @@ import './App.css';
 
 let configMp4 = {
   id: 'vs1',
-  url: '/video/dash/xgplayer-demo.mp4'
+  url: '//v11-tt.ixigua.com/3e060aad768fe0d47a5ad72aba104e74/5bcec90f/video/m/220c8d6b49aa6f94b0b8fc6b5b88750753d115d2be6000098c1bf001a93/'
 };
 let Mp4Player = null;
 let rootStyle = {
