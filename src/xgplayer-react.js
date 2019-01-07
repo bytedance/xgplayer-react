@@ -35,7 +35,7 @@ export default class ReactXgplayer extends Component {
     }
   }
   componentWillUnmount() {
-    if(player) {
+    if(player && player.root) {
       player.destroy ()
     }
   }
