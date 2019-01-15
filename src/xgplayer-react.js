@@ -34,11 +34,6 @@ export default class ReactXgplayer extends Component {
       this.init(nextProps);
     }
   }
-  componentWillUnmount() {
-    if(player && player.root) {
-      player.destroy ()
-    }
-  }
   render() {
     return (<div id={this.props.config.id} style={this.props.rootStyle}>
     </div>);
