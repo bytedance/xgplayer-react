@@ -9,18 +9,19 @@ export default class ReactXgplayer extends Component {
     super(props);
   }
   init(props) {
-    let self = this;
+    const { playerInit } = props;
     if (props.config.url && props.config.url !== '') {
-      player = new Player(props.config);
-      player.once('ready',()=>{ self.props.readyHandle(); });
-      player.once('complete',()=>{ self.props.completeHandle(); });
-      player.once('destroy',()=>{ self.props.destroyHandle(); });
-      props.playerInit(player);
+      props.config.ignores = props.config.ignores ? props.config.ignores.concat(['mp4player', 'hlsplayer']) : ['mp4player', 'hlsplayer'];
+
+      props.config.ignores = props.config.ignores.concat(['backward', 'cover', 'forward', 'meta', 'next', 'prev']);
+      player = new Player(props.config) || {};
+      player.once('ready', () => { this.props.readyHandle(); });
+      player.once('complete', () => { this.props.completeHandle(); });
+      player.once('destroy', () => { this.props.destroyHandle(); });
+      playerInit && props.playerInit(player);
     }
   }
-  componentDidMount() {
-    this.init(this.props);
-  }
+
   shouldComponentUpdate(nextProps) {
     if (JSON.stringify(nextProps.config) !== JSON.stringify(this.props.config) ||
         JSON.stringify(nextProps.format) !== JSON.stringify(this.props.format) ||
@@ -29,14 +30,39 @@ export default class ReactXgplayer extends Component {
     }
     return false;
   }
-  UNSAFE_componentWillUpdate(nextProps) {
+
+  componentWillUpdate(nextProps) {
     if (JSON.stringify(nextProps.config) !== JSON.stringify(this.props.config)) {
       this.init(nextProps);
     }
   }
+
+  getPlayer(ref) {
+    if (ref) {
+      const config = {
+        el: ref
+      };
+      const props = Object.assign({}, this.props);
+      props.config = Object.assign({}, props.config, config);
+      this.init(props);
+    }
+  }
+
+  // componentWillUnmount() {
+  // if (player) {
+  //   this.destroy(player);
+  // }
+  // setTimeout(function () {
+  //   player = null;
+  // }, 0);
+  // }
   render() {
-    return (<div id={this.props.config.id} style={this.props.rootStyle}>
-    </div>);
+    return (
+      <div
+        ref={this.getPlayer.bind(this)}
+        style={this.props.rootStyle}
+      />
+    );
   }
 }
 
