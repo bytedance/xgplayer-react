@@ -1,6 +1,6 @@
 {
   "name": "xgplayer-react",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "React component for xgplayer, a HTML5 video player with a parser that saves traffic",
   "author": "zhangxin.frontend@bytedance.com",
   "license": "MIT",
