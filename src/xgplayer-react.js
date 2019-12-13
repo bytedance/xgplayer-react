@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Player from 'xgplayer';
+import HlsJsPlayer from 'xgplayer-hls.js';
+import FlvJsPlayer from 'xgplayer-flv.js';
 
 let player = null;
 
@@ -12,9 +14,16 @@ export default class ReactXgplayer extends Component {
     const { playerInit } = props;
     if (props.config.url && props.config.url !== '') {
       props.config.ignores = props.config.ignores ? props.config.ignores.concat(['mp4player', 'hlsplayer']) : ['mp4player', 'hlsplayer'];
-
       props.config.ignores = props.config.ignores.concat(['backward', 'cover', 'forward', 'meta', 'next', 'prev']);
-      player = new Player(props.config) || {};
+
+      if (props.format === 'hls') {
+        player = new HlsJsPlayer(props.config);
+      } else if (props.format === 'flv') {
+        player = new FlvJsPlayer(props.config);
+      } else {
+        player = new Player(props.config);
+      }
+
       player.once('ready', () => { this.props.readyHandle(); });
       player.once('complete', () => { this.props.completeHandle(); });
       player.once('destroy', () => { this.props.destroyHandle(); });

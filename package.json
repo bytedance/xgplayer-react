@@ -1,6 +1,6 @@
 {
   "name": "xgplayer-react",
-  "version": "2.3.0",
+  "version": "2.3.1-alpha.0",
   "description": "React component for xgplayer, a HTML5 video player with a parser that saves traffic",
   "author": "zhangxin.frontend@bytedance.com",
   "license": "MIT",
@@ -10,7 +10,9 @@
     "react": "^16.4.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.2",
-    "xgplayer": "^2.2.0"
+    "xgplayer": "^2.3.6",
+    "xgplayer-flv.js": "^2.1.1",
+    "xgplayer-hls.js": "^2.1.5"
   },
   "devDependencies": {
     "@koa/cors": "^2.2.1",
@@ -28,7 +30,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
-    "eslint": "4.19.1",
+    "eslint": "^4.19.1",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
