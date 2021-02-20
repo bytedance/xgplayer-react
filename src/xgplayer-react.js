@@ -11,9 +11,6 @@ export default class ReactXgplayer extends Component {
   init(props) {
     const { playerInit } = props;
     if (props.config.url && props.config.url !== '') {
-      props.config.ignores = props.config.ignores ? props.config.ignores.concat(['mp4player', 'hlsplayer']) : ['mp4player', 'hlsplayer'];
-
-      props.config.ignores = props.config.ignores.concat(['backward', 'cover', 'forward', 'meta', 'next', 'prev']);
       player = new Player(props.config) || {};
       player.once('ready', () => { this.props.readyHandle(); });
       player.once('complete', () => { this.props.completeHandle(); });
